@@ -1,96 +1,36 @@
-# Art Heaven - MERN Stack E-Commerce Website
+# Art and Craft Website (MERN Stack Project)
 
-Art Heaven is a MERN Stack (MongoDB, Express.js, React, Node.js) e-commerce website for pottery and handcrafted products.
+This is a full-stack MERN (MongoDB, Express.js, React with Vite, Node.js) project developed as part of the Final Project for the Mobile Application Development course. The project supports JWT-based user authentication and CRUD operations for managing art and craft products.
 
-## Project Structure
+## Folder Structure
 
-The project is divided into two main folders:
+- `client/` – Frontend code built with **React (Vite)**
+- `server/` – Backend code built with **Express.js** and **MongoDB**
+- `README.md` – Project overview and GitHub link
 
-- **client** - Frontend built with React (Vite)
-- **server** - Backend built with Express.js, MongoDB, and Node.js
+## Group Collaboration
 
-## Features
+- **Team Members**: 2
+- Both members cloned the project from GitHub, contributed code, and pushed updates collaboratively.
+- Each member created at least **2 APIs** and implemented **1 frontend screen** with integration of 2 backend APIs.
 
-- User authentication (register, login, profile management) using JWT
-- Protected routes for authenticated users and admin
-- Product browsing, filtering, and searching
-- Order placement and management
-- Admin panel for product, order, and customer management
-- Contact form submission
-- Responsive design
+##  Project Features
 
-## Technologies Used
+| Feature                         | Description |
+|-------------------------------|-------------|
+| **MERN Stack**                 | MongoDB, Express.js, React (Vite), Node.js |
+| **Authentication (JWT)**      | Register, login, stay logged in securely |
+| **Protected Routes**          | Secure backend routes using JWT middleware |
+| **MongoDB & Mongoose Models** | Schemas for Users and Products |
+| **CRUD Operations**           | Add, read, update, and delete art/craft products |
+| **React Hooks**               | useState, useEffect, useNavigate, etc. |
+| **Global State Management**   | Managed via Context API or Redux |
+| **API Integration (Axios)**   | Frontend communicates with backend |
+| **Routing (React Router)**    | Page navigation handled using React Router DOM |
+| **Bonus (if implemented)**    | Admin role, pagination, filters, deployment |
 
-### Backend:
-- Node.js
-- Express.js
-- MongoDB & Mongoose
-- JWT for authentication
-- bcrypt for password hashing
+##  GitHub Repository
 
-### Frontend:
-- React (with Vite)
-- React Router for navigation
-- React Bootstrap for UI components
-- Axios for API requests
-- JWT for authentication
-- React Icons
+[ Click here to view the GitHub Repository](https://github.com/Tooba-Baqai/Project-ACP)
 
-## Getting Started
-
-### Prerequisites
-- Node.js (v14 or later)
-- MongoDB (local or Atlas)
-
-### Installation and Setup
-
-1. Clone the repository:
-```
-git clone https://github.com/your-username/art-heaven.git
-cd art-heaven
-```
-
-2. Install dependencies:
-```
-# Install server dependencies
-cd server
-npm install
-
-# Install client dependencies
-cd ../client
-npm install
-```
-
-3. Create a `.env` file in the server directory:
-```
-PORT=5000
-MONGO_URI=your_mongodb_connection_string
-JWT_SECRET=your_jwt_secret
-JWT_EXPIRE=30d
-```
-
-4. Start the development servers:
-```
-# Start the server (from the server directory)
-npm run dev
-
-# Start the client (from the client directory)
-npm run dev
-```
-
-5. Access the application:
-- Frontend: http://localhost:5173
-- Backend API: http://localhost:5000/api
-
-## GitHub Repository Link
-
-[https://github.com/your-username/art-heaven](https://github.com/your-username/art-heaven)
-
-## Authors
-
-- Author 1 - [Your Name](https://github.com/your-github-username)
-- Author 2 - [Your Partner's Name](https://github.com/partner-github-username)
-
-## License
-
-This project is licensed under the MIT License. 
+---
