@@ -476,7 +476,7 @@ const AdminProducts = () => {
         </Form>
       </Modal>
 
-      {/* Edit Product Modal */}
+      {}
       <Modal show={showEditModal} onHide={() => setShowEditModal(false)} size="lg">
         <Modal.Header closeButton>
           <Modal.Title>Edit Product</Modal.Title>
