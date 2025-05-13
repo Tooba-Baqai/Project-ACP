@@ -1,0 +1,74 @@
+[
+  {
+    "name": "Blue Pottery Vase",
+    "description": "Handcrafted blue pottery vase with intricate designs inspired by traditional Persian patterns.",
+    "type": "blue pottery",
+    "material": "ceramic",
+    "price": 49.99,
+    "image": "/src/assets/images/Blue-pottery.jpg",
+    "inStock": true
+  },
+  {
+    "name": "Clay Matka Set",
+    "description": "Set of three traditional clay matkas perfect for keeping water naturally cool.",
+    "type": "clay matka",
+    "material": "clay",
+    "price": 35.50,
+    "image": "/src/assets/images/clay-matka-1666332288-6593992.jpeg",
+    "inStock": true
+  },
+  {
+    "name": "Decorative Clay Plate",
+    "description": "Hand-painted decorative clay plate with rustic finish, ideal for wall decoration.",
+    "type": "clay plate",
+    "material": "clay",
+    "price": 29.99,
+    "image": "/src/assets/images/portfolio-2.jpg",
+    "inStock": true
+  },
+  {
+    "name": "Traditional Ceramic Vase",
+    "description": "Elegant ceramic vase with smooth finish, perfect for fresh or dried flower arrangements.",
+    "type": "vase",
+    "material": "ceramic",
+    "price": 42.75,
+    "image": "/src/assets/images/portfolio-1.jpg",
+    "inStock": true
+  },
+  {
+    "name": "Modern Pottery Showpiece",
+    "description": "Contemporary pottery showpiece for modern home decor, showcasing artistic excellence.",
+    "type": "showpiece",
+    "material": "ceramic",
+    "price": 65.00,
+    "image": "/src/assets/images/0415a761c33f7aa8d45a768e349fad43.jpg",
+    "inStock": true
+  },
+  {
+    "name": "Handcrafted Clay Pot Set",
+    "description": "Set of two handcrafted clay pots with natural finish, ideal for indoor plants.",
+    "type": "pottery",
+    "material": "clay",
+    "price": 38.50,
+    "image": "/src/assets/images/claypots-1323747_1920-1-1200x1200.jpg",
+    "inStock": true
+  },
+  {
+    "name": "Decorative Water Pot",
+    "description": "Beautiful decorative clay water pot with traditional engravings and patterns.",
+    "type": "pottery",
+    "material": "clay",
+    "price": 45.25,
+    "image": "/src/assets/images/claywaterpot.jpg",
+    "inStock": true
+  },
+  {
+    "name": "Blue Pottery Plate Set",
+    "description": "Set of four blue pottery plates with matching patterns, perfect for serving or display.",
+    "type": "blue pottery",
+    "material": "ceramic",
+    "price": 79.99,
+    "image": "/src/assets/images/Blue-pottery.jpg",
+    "inStock": true
+  }
+] 
