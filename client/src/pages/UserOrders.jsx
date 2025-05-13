@@ -19,8 +19,6 @@ const UserOrders = () => {
 
       try {
         console.log('Fetching orders for current user:', currentUser.name);
-        // The backend automatically filters orders by the current logged-in user
-        // as seen in the getOrders controller
         const res = await api.get('/orders');
         console.log('User orders received:', res.data);
         setOrders(res.data.data || []);
@@ -65,7 +63,6 @@ const UserOrders = () => {
     try {
       await api.put(`/orders/${orderId}`, { status: 'cancelled' });
       
-      // Update the order in state
       setOrders(orders.map(order => 
         order._id === orderId ? { ...order, status: 'cancelled' } : order
       ));
