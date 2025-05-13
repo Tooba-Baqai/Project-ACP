@@ -1,0 +1,55 @@
+/* Brown Theme CSS */
+
+/* Any blue background elements should be brown */
+.bg-primary, 
+.bg-info, 
+.bg-blue, 
+.bg-primary-light,
+section.bg-primary,
+div.bg-primary,
+section.blue,
+.blue-bg,
+.bg-blue {
+  background-color: #533b37 !important;
+  color: white !important;
+}
+
+/* Ensure text colors */
+.text-primary,
+.text-info,
+.text-blue,
+.primary-text,
+.blue-text {
+  color: #533b37 !important;
+}
+
+/* Style rounders and avatars */
+.rounded-circle.bg-primary,
+.avatar.bg-primary,
+.user-avatar.bg-primary {
+  background-color: #533b37 !important;
+}
+
+/* Fix any buttons */
+.btn-blue,
+.btn-info {
+  background-color: #533b37 !important;
+  border-color: #533b37 !important;
+  color: white !important;
+}
+
+/* Fix icon colors */
+.text-warning .fa-star,
+.text-warning .fa-star-half-alt {
+  color: #8b5d3b !important;
+}
+
+/* Specific fix for Join Our Artistic Journey section */
+section[style*="background: rgb(13, 110, 253)"],
+section[style*="background-color: rgb(13, 110, 253)"],
+section[style*="background: #0d6efd"],
+section[style*="background-color: #0d6efd"],
+section[style*="background: blue"],
+section[style*="background-color: blue"] {
+  background-color: #533b37 !important;
+} 
