@@ -2,7 +2,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { Container, Navbar, Nav, Button, NavDropdown } from "react-bootstrap";
 import { useAuth } from "../context/AuthContext";
 
-// Replace logo import with inline logo component
 const LogoComponent = () => {
   return (
     <div className="logo">
