@@ -11,8 +11,8 @@ This is a full-stack MERN (MongoDB, Express.js, React with Vite, Node.js) projec
 ## Group Collaboration
 
 - **Team Members**: 2
-- Both members cloned the project from GitHub, contributed code, and pushed updates collaboratively.
-- Each member created at least **2 APIs** and implemented **1 frontend screen** with integration of 2 backend APIs.
+- Tooba Baqai (46489)
+- Manahil Abid (44556)
 
 ##  Project Features
 
@@ -31,6 +31,6 @@ This is a full-stack MERN (MongoDB, Express.js, React with Vite, Node.js) projec
 
 ##  GitHub Repository
 
-[ Click here to view the GitHub Repository](https://github.com/Tooba-Baqai/Project-ACP)
+[ Click here to view the GitHub Repository](https://github.com/Tooba-Baqai/Project-ACP)(https://github.com/ManahilAbid0102)
 
 ---
