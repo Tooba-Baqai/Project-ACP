@@ -33,4 +33,27 @@ This is a full-stack MERN (MongoDB, Express.js, React with Vite, Node.js) projec
 
 [ Click here to view the GitHub Repository](https://github.com/Tooba-Baqai/Project-ACP)(https://github.com/ManahilAbid0102)
 
----
+## How to Run
+
+1. Clone the repository:
+```bash
+git clone https://github.com/Tooba-Baqai/Project-ACP
+cd Project-ACP
+```
+
+2. Install dependencies for both client and server:
+```bash
+cd server
+npm install
+
+cd client
+npm install
+```
+3. Start the application:
+```bash
+cd server
+npm start
+
+cd client
+npm run dev
+```
