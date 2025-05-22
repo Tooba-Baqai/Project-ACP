@@ -50,51 +50,42 @@ export const CartProvider = ({ children }) => {
       toast.warning('Please login to add items to cart');
       return false;
     }
-    
     setLoading(true);
     try {
       console.log('Adding to cart - Product:', productId, 'Quantity:', quantity);
-      
-      // Validate inputs
       if (!productId) {
         toast.error('Invalid product');
         return false;
       }
-      
       if (quantity < 1) {
         quantity = 1;
       }
-      
-      const res = await api.post('/cart', { 
-        productId, 
-        quantity: parseInt(quantity) 
-      });
-      
+      const res = await api.post('/cart', { productId, quantity: parseInt(quantity) });
       if (res.data && res.data.success) {
         console.log('Item added to cart successfully:', res.data.data);
         setCart(res.data.data);
         toast.success('Item added to cart!');
         return true;
       } else {
+        // Log and show backend error message if present
+        const backendMsg = res.data && res.data.message ? res.data.message : 'Something went wrong. Please try again.';
         console.error('Unexpected response format:', res.data);
-        toast.error('Something went wrong. Please try again.');
+        toast.error(backendMsg);
         return false;
       }
     } catch (error) {
-      console.error('Error adding to cart:', error);
-      
+      // Show backend error message in toast
       if (error.response) {
         console.error('Error response:', error.response.data);
         const errorMessage = error.response.data?.message || 'Failed to add item to cart';
-        toast.error(errorMessage);
+        toast.error('Backend: ' + errorMessage);
       } else if (error.request) {
         console.error('No response received:', error.request);
         toast.error('No response from server. Please check your connection.');
       } else {
         console.error('Error message:', error.message);
-        toast.error('Failed to add item to cart. Please try again.');
+        toast.error('Frontend: ' + (error.message || 'Failed to add item to cart. Please try again.'));
       }
-      
       return false;
     } finally {
       setLoading(false);
@@ -218,4 +209,4 @@ export const CartProvider = ({ children }) => {
   );
 };
 
-export default CartContext; 
+export default CartContext;

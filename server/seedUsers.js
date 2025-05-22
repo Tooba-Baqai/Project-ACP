@@ -32,23 +32,19 @@ const users = [
   }
 ];
 
-// Function to seed users
+
 const seedUsers = async () => {
   try {
-    // First, clear all existing users
     await User.deleteMany({});
     console.log('Deleted all existing users');
 
-    // Create each user
     for (const userData of users) {
-      // Check if user already exists
       const existingUser = await User.findOne({ email: userData.email });
       if (existingUser) {
         console.log(`User ${userData.email} already exists, skipping...`);
         continue;
       }
-
-      // Create user
+      // Do NOT hash the password here; let the Mongoose pre-save hook handle it
       const user = await User.create(userData);
       console.log(`Created user: ${user.email} with role: ${user.role}`);
     }
@@ -62,4 +58,4 @@ const seedUsers = async () => {
 };
 
 // Run the seed function
-seedUsers(); 
+seedUsers();

@@ -32,11 +32,30 @@ const ProductDetail = () => {
     fetchProduct();
   }, [api, id]);
 
-  const handleOrderClick = () => {
-    if (isAuthenticated) {
-      navigate(`/place-order/${id}`);
-    } else {
+  // Option B: Add to cart, then go to order page
+  const handleOrderClick = async () => {
+    if (!isAuthenticated) {
       navigate('/login', { state: { from: `/products/${id}` } });
+      return;
+    }
+    if (!product || !product.inStock) {
+      toast.error('Product is not available');
+      return;
+    }
+    setAddingToCart(true);
+    try {
+      
+      const productId = typeof id === 'string' ? id : String(id);
+      const qty = parseInt(quantity) > 0 ? parseInt(quantity) : 1;
+      const success = await addToCart(productId, qty);
+      if (success) {
+        toast.success(`${product.name} added to cart! Redirecting to order page...`);
+        navigate(`/place-order/${id}`);
+      }
+    } catch (error) {
+      toast.error('Failed to add item to cart. Please try again.');
+    } finally {
+      setAddingToCart(false);
     }
   };
 
@@ -46,23 +65,28 @@ const ProductDetail = () => {
       navigate('/login', { state: { from: `/products/${id}` } });
       return;
     }
-    
     if (!product || !product.inStock) {
       toast.error('Product is not available');
       return;
     }
-    
     setAddingToCart(true);
     try {
-      console.log('Adding to cart:', id, 'quantity:', quantity);
-      const success = await addToCart(id, quantity);
-      
+      // Ensure id is a string and quantity is a positive integer
+      const productId = typeof id === 'string' ? id : String(id);
+      const qty = parseInt(quantity) > 0 ? parseInt(quantity) : 1;
+      const success = await addToCart(productId, qty);
       if (success) {
         toast.success(`${product.name} added to cart!`);
       }
     } catch (error) {
+      if (error.response && error.response.data && error.response.data.message) {
+        toast.error('Backend: ' + error.response.data.message);
+      } else if (error.message) {
+        toast.error('Frontend: ' + error.message);
+      } else {
+        toast.error('Failed to add item to cart. Please try again.');
+      }
       console.error('Error adding to cart:', error);
-      toast.error('Failed to add item to cart. Please try again.');
     } finally {
       setAddingToCart(false);
     }
@@ -96,10 +120,6 @@ const ProductDetail = () => {
       </Container>
     );
   }
-
-  const isInCart = cart?.items?.some(item => 
-    item.product && (item.product._id === id || item.product === id)
-  );
 
   return (
     <Container className="py-4 mt-3" style={{ paddingTop: "1.5rem", paddingBottom: "2rem" }}>
@@ -167,33 +187,6 @@ const ProductDetail = () => {
 
           <div className="d-grid gap-2">
             <Button 
-              variant="primary" 
-              size="lg"
-              onClick={handleAddToCart}
-              disabled={!product.inStock || addingToCart}
-            >
-              {addingToCart ? (
-                <>
-                  <Spinner
-                    as="span"
-                    animation="border"
-                    size="sm"
-                    role="status"
-                    aria-hidden="true"
-                    className="me-2"
-                  />
-                  Adding...
-                </>
-              ) : isInCart ? (
-                <>
-                  <i className="fas fa-check me-2"></i>
-                  In Cart - Add More
-                </>
-              ) : (
-                'Add to Cart'
-              )}
-            </Button>
-            <Button 
               variant="outline-primary" 
               size="lg"
               onClick={handleOrderClick}
@@ -249,4 +242,4 @@ const ProductDetail = () => {
   );
 };
 
-export default ProductDetail; 
+export default ProductDetail;

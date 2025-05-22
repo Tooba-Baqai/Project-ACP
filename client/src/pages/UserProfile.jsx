@@ -101,7 +101,7 @@ const UserProfile = () => {
                 className="d-block w-100"
                 size="lg"
               >
-                <i className="fas fa-shopping-bag me-2"></i> My Orders
+                My Orders
               </Button>
 
               {}
@@ -198,4 +198,4 @@ const UserProfile = () => {
   );
 };
 
-export default UserProfile; 
+export default UserProfile;

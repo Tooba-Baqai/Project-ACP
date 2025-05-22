@@ -66,152 +66,26 @@ const Cart = () => {
       <Container className="py-5">
         <Card className="shadow-sm">
           <Card.Body className="text-center py-5">
-            <i className="fas fa-shopping-cart fa-4x text-muted mb-4"></i>
-            <h3>Your cart is empty</h3>
-            <p className="text-muted">Start shopping to add items to your cart.</p>
-            <Button 
-              as={Link} 
-              to="/products" 
-              variant="primary"
-              className="mt-3"
-            >
-              Browse Products
-            </Button>
+            <h3>No cart functionality available</h3>
+            <p className="text-muted">Please use the Order button on product pages to place orders directly.</p>
           </Card.Body>
         </Card>
       </Container>
     );
   }
 
+  // Remove cart table and summary UI
   return (
     <Container className="py-5">
-      <h2 className="mb-4">Your Shopping Cart</h2>
-      
-      <Row>
-        <Col lg={8}>
-          <Card className="shadow-sm mb-4">
-            <Card.Body>
-              <Table responsive className="align-middle">
-                <thead>
-                  <tr>
-                    <th>Product</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
-                    <th>Total</th>
-                    <th>Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {cart.items.map((item) => (
-                    <tr key={item._id}>
-                      <td>
-                        <div className="d-flex align-items-center">
-                          {item.image && (
-                            <img 
-                              src={item.image} 
-                              alt={item.name} 
-                              style={{ width: '50px', height: '50px', objectFit: 'cover', marginRight: '10px' }}
-                            />
-                          )}
-                          <div>
-                            <h6 className="mb-0">{item.name}</h6>
-                          </div>
-                        </div>
-                      </td>
-                      <td>${item.price.toFixed(2)}</td>
-                      <td style={{ width: '120px' }}>
-                        <Form.Control
-                          type="number"
-                          min="1"
-                          value={item.quantity}
-                          onChange={(e) => handleQuantityChange(item._id, parseInt(e.target.value))}
-                          style={{ width: '80px' }}
-                        />
-                      </td>
-                      <td>${(item.price * item.quantity).toFixed(2)}</td>
-                      <td>
-                        <Button 
-                          variant="outline-danger" 
-                          size="sm"
-                          onClick={() => handleRemoveItem(item._id)}
-                        >
-                          <i className="fas fa-trash"></i>
-                        </Button>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </Table>
-            </Card.Body>
-            <Card.Footer className="bg-white">
-              <div className="d-flex justify-content-between">
-                <Button 
-                  variant="outline-secondary"
-                  onClick={handleClearCart}
-                >
-                  Clear Cart
-                </Button>
-                <Button 
-                  as={Link}
-                  to="/products"
-                  variant="outline-primary"
-                >
-                  Continue Shopping
-                </Button>
-              </div>
-            </Card.Footer>
-          </Card>
-        </Col>
-        
-        <Col lg={4}>
-          <Card className="shadow-sm">
-            <Card.Header className="bg-white">
-              <h5 className="mb-0">Order Summary</h5>
-            </Card.Header>
-            <Card.Body>
-              <div className="d-flex justify-content-between mb-2">
-                <span>Subtotal:</span>
-                <span>${cart.totalAmount.toFixed(2)}</span>
-              </div>
-              <div className="d-flex justify-content-between mb-2">
-                <span>Shipping:</span>
-                <span>Free</span>
-              </div>
-              <hr />
-              <div className="d-flex justify-content-between mb-3">
-                <strong>Total:</strong>
-                <strong>${cart.totalAmount.toFixed(2)}</strong>
-              </div>
-              <div className="d-grid">
-                <Button 
-                  variant="primary" 
-                  size="lg"
-                  onClick={handleCheckout}
-                  disabled={checkoutLoading}
-                >
-                  {checkoutLoading ? (
-                    <>
-                      <Spinner
-                        as="span"
-                        animation="border"
-                        size="sm"
-                        role="status"
-                        aria-hidden="true"
-                        className="me-2"
-                      />
-                      Processing...
-                    </>
-                  ) : (
-                    'Proceed to Checkout'
-                  )}
-                </Button>
-              </div>
-            </Card.Body>
-          </Card>
-        </Col>
-      </Row>
+      <h2 className="mb-4">Cart Disabled</h2>
+      <Card className="shadow-sm">
+        <Card.Body className="text-center py-5">
+          <h3>Cart functionality has been removed.</h3>
+          <p className="text-muted">Please use the Order button on product pages to place orders directly.</p>
+        </Card.Body>
+      </Card>
     </Container>
   );
 };
 
-export default Cart; 
+export default Cart;

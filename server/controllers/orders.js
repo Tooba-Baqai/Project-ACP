@@ -93,12 +93,53 @@ exports.getOrder = async (req, res) => {
 
 exports.createOrder = async (req, res) => {
   try {
-    console.log('Creating order from cart with data:', req.body);
-    
-    const { shippingAddress, contactNumber, paymentMethod, notes } = req.body;
- 
+    // Support both cart-based and direct single-product orders
+    const { shippingAddress, contactNumber, paymentMethod, notes, product, quantity } = req.body;
+
+    // If product and quantity are provided, treat as direct single-product order
+    if (product && quantity) {
+      // Validate product
+      const foundProduct = await Product.findById(product);
+      if (!foundProduct) {
+        return res.status(404).json({
+          success: false,
+          message: 'Product not found',
+        });
+      }
+      if (!foundProduct.inStock) {
+        return res.status(400).json({
+          success: false,
+          message: 'Product is out of stock',
+        });
+      }
+      // Build order item
+      const orderItem = {
+        product: foundProduct._id,
+        name: foundProduct.name,
+        quantity: Number(quantity),
+        price: foundProduct.price,
+        image: foundProduct.image,
+      };
+      const totalAmount = foundProduct.price * Number(quantity);
+      const orderData = {
+        user: req.user.id,
+        items: [orderItem],
+        shippingAddress: shippingAddress || req.user.address || 'Pickup in store',
+        contactNumber: contactNumber || req.user.phone || 'Not provided',
+        totalAmount,
+        paymentMethod: paymentMethod || 'cash',
+        notes: notes || '',
+        orderDate: new Date(),
+      };
+      const order = await Order.create(orderData);
+      return res.status(201).json({
+        success: true,
+        data: order,
+      });
+    }
+
+    // Otherwise, fallback to cart-based order
     const cart = await Cart.findOne({ user: req.user.id });
-    
     if (!cart || !cart.items || cart.items.length === 0) {
       return res.status(400).json({
         success: false,
@@ -107,14 +148,12 @@ exports.createOrder = async (req, res) => {
     }
     for (const item of cart.items) {
       const product = await Product.findById(item.product);
-      
       if (!product) {
         return res.status(404).json({
           success: false,
           message: `Product ${item.name} not found`
         });
       }
-      
       if (!product.inStock) {
         return res.status(400).json({
           success: false,
@@ -122,7 +161,6 @@ exports.createOrder = async (req, res) => {
         });
       }
     }
-
     const orderData = {
       user: req.user.id,
       items: cart.items,
@@ -133,15 +171,9 @@ exports.createOrder = async (req, res) => {
       notes: notes || '',
       orderDate: new Date()
     };
-    
     const order = await Order.create(orderData);
-    
     cart.items = [];
     await cart.save();
-    
-    console.log('Order created successfully:', order._id);
-    console.log('Order total amount:', order.totalAmount);
-
     res.status(201).json({
       success: true,
       data: order
@@ -231,4 +263,4 @@ exports.deleteOrder = async (req, res) => {
       error: error.message
     });
   }
-}; 
+};
